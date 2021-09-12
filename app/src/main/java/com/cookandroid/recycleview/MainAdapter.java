@@ -11,9 +11,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 /* 메인 어댑터 구현하기 */
-public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CustomViewHolder> {
+public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CustomViewHolder> implements ItemTouchHelperListener{
 
     // item들을 집어 넣을 mainData 넣기
     private ArrayList<MainData> arrayList;
@@ -53,13 +55,13 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CustomViewHold
         });
 
         // 롱클릭을 눌렀을 때 리스트 뷰가 삭제되는 것
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+        /*holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
                 remove(holder.getAbsoluteAdapterPosition()); // getAdapterPosition
                 return true;
             }
-        });
+        });*/
     }
 
     @Override
@@ -76,6 +78,30 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CustomViewHold
             ex.printStackTrace();
         }
     }
+
+    public void setItems(ArrayList<MainData> itemList) {
+        arrayList = itemList;
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public boolean onItemMove(int from_position, int to_position) {
+        MainData item = arrayList.get(from_position);
+        arrayList.remove(from_position);
+
+        arrayList.add(to_position,item);
+        item.setNumber(to_position);
+        notifyItemMoved(from_position,to_position);
+        return true;
+    }
+
+    @Override
+    public void onItemSwipe(int position) {
+
+        arrayList.remove(position);
+        notifyItemRemoved(position);
+    }
+
 
     // item설정한 xml을 가지고 있는 홀더
     public class CustomViewHolder extends RecyclerView.ViewHolder {

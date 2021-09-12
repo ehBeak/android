@@ -2,6 +2,7 @@ package com.cookandroid.recycleview;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,11 +18,13 @@ public class MainActivity extends AppCompatActivity {
     private MainAdapter mainAdapter;
     private RecyclerView recyclerView;
     private GridLayoutManager gridLayoutManager;
+    private ItemTouchHelper itemTouchHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         // 1. 리사이클러 뷰에서 선언한 아이디 연동
         recyclerView = (RecyclerView)findViewById(R.id.rv);
@@ -37,14 +40,19 @@ public class MainActivity extends AppCompatActivity {
         // 3. 리사이클러 뷰에 어댑터 설정
         recyclerView.setAdapter(mainAdapter);
 
+        // TouchHelper 설정
+        itemTouchHelper = new ItemTouchHelper(new ItemTouchHelperCallback(mainAdapter));
+        itemTouchHelper.attachToRecyclerView(recyclerView);
+
         // activity main에 추가라는 기능 구현
         Button btn_add = (Button)findViewById(R.id.btn_add);
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainData mainData = new MainData(R.drawable.ic_launcher_background, "홍드로이드");
+                MainData mainData = new MainData(R.drawable.ic_launcher_background, "홍드로이드",0);
 
                 arrayList.add(mainData);
+                mainAdapter.setItems(arrayList);
                 mainAdapter.notifyDataSetChanged();
             }
         });

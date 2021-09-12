@@ -5,11 +5,21 @@ public class MainData {
 
     private int iv_icon;
     private String tv_taskname;
+    private int number;
 
 
-    public MainData(int iv_icon, String tv_taskname) {
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public MainData(int iv_icon, String tv_taskname, int number) {
         this.iv_icon = iv_icon;
         this.tv_taskname = tv_taskname;
+        this.number = number;
     }
 
     public int getIv_icon() {
