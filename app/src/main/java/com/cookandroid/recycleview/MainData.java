@@ -3,43 +3,28 @@ package com.cookandroid.recycleview;
 /* item으로 만든 xml의 정보를 이 클래스에 담기 */
 public class MainData {
 
-    private int iv_profile;
-    private String tv_name;
-    private String tv_content;
+    private int iv_icon;
+    private String tv_taskname;
 
 
-    public MainData(int iv_profile, String tv_name, String tv_content) {
-        this.iv_profile = iv_profile;
-        this.tv_name = tv_name;
-        this.tv_content = tv_content;
+    public MainData(int iv_icon, String tv_taskname) {
+        this.iv_icon = iv_icon;
+        this.tv_taskname = tv_taskname;
     }
 
-
-    public int getIv_profile() {
-        return iv_profile;
+    public int getIv_icon() {
+        return iv_icon;
     }
 
-    public void setIv_profile(int iv_profile) {
-        this.iv_profile = iv_profile;
+    public void setIv_icon(int iv_icon) {
+        this.iv_icon = iv_icon;
     }
 
-    public String getTv_name() {
-        return tv_name;
+    public String getTv_taskname() {
+        return tv_taskname;
     }
 
-    public void setTv_name(String tv_name) {
-        this.tv_name = tv_name;
+    public void setTv_taskname(String tv_taskname) {
+        this.tv_taskname = tv_taskname;
     }
-
-    public String getTv_content() {
-        return tv_content;
-    }
-
-    public void setTv_content(String tv_content) {
-        this.tv_content = tv_content;
-    }
-
-
-
-
 }

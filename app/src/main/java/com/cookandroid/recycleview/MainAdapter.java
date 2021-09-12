@@ -39,16 +39,15 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CustomViewHold
     public void onBindViewHolder(@NonNull MainAdapter.CustomViewHolder holder, int position) {
 
         // 아까 홀더에서 이미지 리소스를 가져와라, 해당 position에서..
-        holder.iv_profile.setImageResource(arrayList.get(position).getIv_profile());
-        holder.tv_name.setText(arrayList.get(position).getTv_name());
-        holder.tv_content.setText(arrayList.get(position).getTv_content());
+        holder.iv_icon.setImageResource(arrayList.get(position).getIv_icon());
+        holder.tv_taskname.setText(arrayList.get(position).getTv_taskname());
 
         // 리스트 뷰가 클릭이 되었을때, 롱 클릭이 되었을 때
         holder.itemView.setTag(position);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String curName = holder.tv_name.getText().toString();
+                String curName = holder.tv_taskname.getText().toString();
                 Toast.makeText(view.getContext(), curName,Toast.LENGTH_SHORT).show();
             }
         });
@@ -81,16 +80,14 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.CustomViewHold
     // item설정한 xml을 가지고 있는 홀더
     public class CustomViewHolder extends RecyclerView.ViewHolder {
 
-        protected ImageView iv_profile;
-        protected TextView tv_name;
-        protected TextView tv_content;
+        protected ImageView iv_icon;
+        protected TextView tv_taskname;
 
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            this.iv_profile = (ImageView) itemView.findViewById(R.id.iv_profile);
-            this.tv_name = (TextView) itemView.findViewById(R.id.tv_name);
-            this.tv_content = (TextView) itemView.findViewById(R.id.tv_content);
+            this.iv_icon = (ImageView) itemView.findViewById(R.id.iv_icon);
+            this.tv_taskname = (TextView) itemView.findViewById(R.id.tv_taskname);
         }
 
 
